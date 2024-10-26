@@ -7,7 +7,7 @@ import (
 type TokenType int
 
 const (
-	Number = iota
+	Number TokenType = iota
 	Plus
 	Minus
 	Multiply
