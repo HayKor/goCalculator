@@ -10,11 +10,18 @@ func TestParser(t *testing.T) {
 		expectValue float64
 		wantErr     bool
 	}{
+		// Common check
 		{"5+5", 10, false},
 		{"5+5*2", 15, false},
 		{"(5+5)*2", 20, false},
 		{"(5+5)*2+2", 22, false},
+		{"5-(5-5)", 5, false},
 
+		// Signs before number check
+		{"5-(-5)", 10, false},
+		{"5--5", 10, false},
+
+		// Parentheses check
 		{"(5+5*2+2", 0, true},
 		{"5+5*2)", 0, true},
 		{"5+5*2))", 0, true},
